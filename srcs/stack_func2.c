@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 18:35:20 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/04/30 19:13:21 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/05/01 11:41:22 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ra(t_list **stack_a, int silent)
 {
 	t_list	*stack_tmp;
 
+	if (!*stack_a || !(*stack_a)->next)
+		return ;
 	stack_tmp = (*stack_a)->next;
 	(*stack_a)->next = NULL;
 	(ft_lstlast(stack_tmp))->next = *stack_a;
@@ -28,6 +30,8 @@ void	rb(t_list **stack_b, int silent)
 {
 	t_list	*stack_tmp;
 
+	if (!*stack_b || !(*stack_b)->next)
+		return ;
 	stack_tmp = (*stack_b)->next;
 	(*stack_b)->next = NULL;
 	(ft_lstlast(stack_tmp))->next = *stack_b;

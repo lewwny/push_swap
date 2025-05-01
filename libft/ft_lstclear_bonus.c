@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 21:58:07 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/04/30 18:09:17 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/05/01 11:17:19 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@ void	ft_lstclear(t_list **lst)
 {
 	t_list	*tmp;
 
-	if (!lst)
-		return ;
 	while (*lst)
 	{
 		tmp = (*lst)->next;
-		ft_lstdelone(*lst);
+		free(*lst);
 		*lst = tmp;
 	}
+	*lst = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:54:47 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/04/30 19:52:25 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/05/01 11:09:15 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,19 @@ void	test_argument(int argc, char **argv)
 	while (i < argc)
 	{
 		if (!test_argv(argv[i]))
+			error_program();
+		i++;
+	}
+}
+
+void	test_double(int *tab, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		if (tab[i] == tab[i + 1])
 			error_program();
 		i++;
 	}
