@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:47:32 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/05/01 11:10:55 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/05/03 13:53:11 by lengarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	init_index(t_list **stack_a)
 	size = ft_lstsize(*stack_a);
 	list = fill_list(*stack_a, size);
 	sort_int_tab(list, size);
-	test_double(list, size);
+	test_double(list, size, stack_a);
 	replace_lst_index(*stack_a, list, size);
+	free(list);
 }

@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 16:41:27 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/04/30 17:50:09 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/05/03 14:00:13 by lengarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,13 @@ t_list	*init_stack(int argc, char **argv)
 
 	i = 2;
 	stack_a = ft_lstnew(ft_atoi(argv[1]));
+	if (!stack_a)
+		error_program();
 	while (i < argc)
 	{
 		tmp = ft_lstnew(ft_atoi(argv[i++]));
+		if (!tmp)
+			error_program_free(&stack_a);
 		ft_lstadd_back(&stack_a, tmp);
 	}
 	return (stack_a);

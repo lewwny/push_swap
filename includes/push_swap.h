@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:47:12 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/05/01 12:39:43 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/05/03 13:59:44 by lengarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ void	error_program(void);
 void	init_index(t_list **stack_a);
 void	set_chunk(int n, int *nb_chunk, int *size_chunk);
 void	push_all_chunks(t_list **a, t_list **b, int nb_chunks, int chunk_size);
-void	test_double(int *tab, int size);
+void	test_double(int *tab, int size, t_list **stack_a);
 void	push_back_to_a(t_list **a, t_list **b);
+void	error_program_free(t_list **stack_a);
 
 int		*fill_list(t_list *stack_a, int size);
 

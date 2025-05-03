@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:54:47 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/05/01 11:09:15 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/05/03 13:53:40 by lengarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 void	error_program(void)
 {
+	write(2, "Error\n", 6);
+	exit(1);
+}
+
+void	error_program_free(t_list **stack_a)
+{
+	ft_lstclear(stack_a);
 	write(2, "Error\n", 6);
 	exit(1);
 }
@@ -47,7 +54,7 @@ void	test_argument(int argc, char **argv)
 	}
 }
 
-void	test_double(int *tab, int size)
+void	test_double(int *tab, int size, t_list **stack_a)
 {
 	int	i;
 
@@ -55,7 +62,10 @@ void	test_double(int *tab, int size)
 	while (i < size - 1)
 	{
 		if (tab[i] == tab[i + 1])
-			error_program();
+		{
+			free(tab);
+			error_program_free(stack_a);
+		}
 		i++;
 	}
 }
