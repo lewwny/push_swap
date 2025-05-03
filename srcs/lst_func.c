@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 16:41:27 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/05/03 14:00:13 by lengarci         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:47:23 by lengarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ void	ft_lstprint(t_list *lst)
 	ft_printf("-----------------\n");
 }
 
+static int	verif_atoi(char *str, t_list **stack_a)
+{
+	long	res;
+
+	res = ft_atoi(str);
+	if (res > 2147483647 || res < -2147483648)
+		error_program_free(stack_a);
+	return ((int) res);
+}
+
 t_list	*init_stack(int argc, char **argv)
 {
 	int		i;
@@ -30,12 +40,13 @@ t_list	*init_stack(int argc, char **argv)
 	t_list	*tmp;
 
 	i = 2;
-	stack_a = ft_lstnew(ft_atoi(argv[1]));
+	stack_a = NULL;
+	stack_a = ft_lstnew(verif_atoi(argv[1], &stack_a));
 	if (!stack_a)
 		error_program();
 	while (i < argc)
 	{
-		tmp = ft_lstnew(ft_atoi(argv[i++]));
+		tmp = ft_lstnew(verif_atoi(argv[i++], &stack_a));
 		if (!tmp)
 			error_program_free(&stack_a);
 		ft_lstadd_back(&stack_a, tmp);

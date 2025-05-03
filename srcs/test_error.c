@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:54:47 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/05/03 13:53:40 by lengarci         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:49:17 by lengarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	error_program(void)
 
 void	error_program_free(t_list **stack_a)
 {
-	ft_lstclear(stack_a);
+	if (*stack_a)
+		ft_lstclear(stack_a);
 	write(2, "Error\n", 6);
 	exit(1);
 }

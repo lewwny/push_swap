@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 12:27:51 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/06 21:01:49 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/05/03 14:51:34 by lengarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static int	isspace(char c)
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
-	int	i;
-	int	neg;
-	int	res;
+	int		i;
+	long	neg;
+	long	res;
 
 	i = 0;
 	neg = 1;
