@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 21:05:54 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/05/03 13:45:36 by lengarci         ###   ########.fr       */
+/*   Updated: 2025/05/03 15:09:00 by lengarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	*fill_list(t_list *stack_a, int size)
 	i = 0;
 	list = malloc(sizeof(int) * size);
 	if (!list)
-		error_program();
+		error_program_free(&stack_a);
 	while (stack_a)
 	{
 		list[i++] = stack_a->content;
