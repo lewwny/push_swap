@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:54:47 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/05/03 14:49:17 by lengarci         ###   ########.fr       */
+/*   Updated: 2025/05/04 22:32:17 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ void	error_program(void)
 	exit(1);
 }
 
-void	error_program_free(t_list **stack_a)
+void	error_program_free(t_list **stack_a, char **argv, int a)
 {
 	if (*stack_a)
 		ft_lstclear(stack_a);
+	if (a)
+		free_split(argv);
 	write(2, "Error\n", 6);
 	exit(1);
 }
@@ -29,24 +31,29 @@ void	error_program_free(t_list **stack_a)
 static int	test_argv(char *str)
 {
 	int	i;
+	int	count;
 
+	count = 0;
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
+	{
 		i++;
-	if (str[i])
+		count++;
+	}
+	if (str[i] || !count)
 		return (0);
 	return (1);
 }
 
-void	test_argument(int argc, char **argv)
+void	test_argument(int argc, char **argv, int a)
 {
 	int	i;
 
-	if (argc < 2)
-		error_program();
 	i = 1;
+	if (a)
+		i = 0;
 	while (i < argc)
 	{
 		if (!test_argv(argv[i]))
@@ -55,17 +62,17 @@ void	test_argument(int argc, char **argv)
 	}
 }
 
-void	test_double(int *tab, int size, t_list **stack_a)
+void	test_double(int *tab, t_list **stack_a, char **argv, t_pair *asize)
 {
 	int	i;
 
 	i = 0;
-	while (i < size - 1)
+	while (i < asize->size - 1)
 	{
 		if (tab[i] == tab[i + 1])
 		{
 			free(tab);
-			error_program_free(stack_a);
+			error_program_free(stack_a, argv, asize->a);
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:17:26 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/05/01 12:42:54 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/05/04 21:56:02 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ void	rrr(t_list **stack_a, t_list **stack_b)
 void	set_chunk(int n, int *nb_chunk, int *size_chunk)
 {
 	if (n <= 100)
-		*nb_chunk = 5;
+		*nb_chunk = n / 15;
+	else if (n <= 500)
+		*nb_chunk = n / 35;
 	else
 		*nb_chunk = 11 + (n / 70);
+	if (!*nb_chunk)
+		*nb_chunk = 1;
 	*size_chunk = (n + *nb_chunk - 1) / *nb_chunk;
 }

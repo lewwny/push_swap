@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:47:32 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/05/03 13:53:11 by lengarci         ###   ########.fr       */
+/*   Updated: 2025/05/04 22:11:31 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,20 @@ static void	replace_lst_index(t_list *stack_a, int *tab, int size)
 	}
 }
 
-void	init_index(t_list **stack_a)
+void	init_index(t_list **stack_a, char **argv, int a)
 {
-	int	*list;
-	int	size;
+	int		*list;
+	t_pair	*asize;
 
-	size = ft_lstsize(*stack_a);
-	list = fill_list(*stack_a, size);
-	sort_int_tab(list, size);
-	test_double(list, size, stack_a);
-	replace_lst_index(*stack_a, list, size);
+	asize = malloc(sizeof(t_pair));
+	if (!asize)
+		error_program_free(stack_a, argv, a);
+	asize->size = ft_lstsize(*stack_a);
+	asize->a = a;
+	list = fill_list(*stack_a, asize->size, argv, asize->a);
+	sort_int_tab(list, asize->size);
+	test_double(list, stack_a, argv, asize);
+	replace_lst_index(*stack_a, list, asize->size);
 	free(list);
+	free(asize);
 }
