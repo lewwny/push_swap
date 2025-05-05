@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:50:18 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/05/04 22:38:26 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/05/05 17:17:50 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,21 @@ static void	sort_stack(t_list **stack_a, t_list **stack_b)
 	int	size_chunk;
 
 	n = ft_lstsize(*stack_a);
-	set_chunk(n, &nb_chunk, &size_chunk);
-	push_all_chunks(stack_a, stack_b, nb_chunk, size_chunk);
-	push_back_to_a(stack_a, stack_b);
+	if (n == 2)
+	{
+		if ((*stack_a)->content > (*stack_a)->next->content)
+			sa(*stack_a);
+	}
+	else if (n == 3)
+		sort_three(stack_a);
+	else if (n <= 5)
+		sort_five(stack_a, stack_b);
+	else
+	{
+		set_chunk(n, &nb_chunk, &size_chunk);
+		push_all_chunks(stack_a, stack_b, nb_chunk, size_chunk);
+		push_back_to_a(stack_a, stack_b);
+	}
 }
 
 static void	ajust_argc(int *argc, char **argv)
@@ -29,6 +41,11 @@ static void	ajust_argc(int *argc, char **argv)
 	int	i;
 
 	i = 0;
+	if (!argv[0])
+	{
+		free_split(argv);
+		error_program();
+	}
 	while (argv[i])
 		i++;
 	*argc = i;
@@ -45,6 +62,13 @@ static int	is_sorted(t_list *stack)
 	return (1);
 }
 
+static void	free_end(int a, t_list **stack_a, char **argv)
+{
+	ft_lstclear(stack_a);
+	if (a)
+		free_split(argv);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
@@ -58,7 +82,7 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
-		if (!argv)
+		if (!argv || !argv[0])
 			error_program();
 		a = 1;
 		ajust_argc(&argc, argv);
@@ -70,8 +94,6 @@ int	main(int argc, char **argv)
 		init_index(&stack_a, argv, a);
 		sort_stack(&stack_a, &stack_b);
 	}
-	ft_lstclear(&stack_a);
-	if (a)
-		free_split(argv);
+	free_end(a, &stack_a, argv);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:37:52 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/04/30 18:32:07 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/05/05 10:43:37 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	sa(t_list *stack_a)
 	int		tmp2;
 	t_list	*stack_tmp;
 
-	if (!stack_a->content || !stack_a->next)
+	if (!stack_a || !stack_a->next)
 		return ;
 	tmp1 = stack_a->content;
 	stack_tmp = stack_a->next;
 	tmp2 = stack_tmp->content;
 	stack_tmp->content = tmp1;
 	stack_a->content = tmp2;
-	ft_printf("sa");
+	ft_printf("sa\n");
 }
 
 void	sb(t_list *stack_b)
@@ -34,7 +34,7 @@ void	sb(t_list *stack_b)
 	int		tmp2;
 	t_list	*stack_tmp;
 
-	if (!stack_b->content || !stack_b->next)
+	if (!stack_b || !stack_b->next)
 		return ;
 	tmp1 = stack_b->content;
 	stack_tmp = stack_b->next;
@@ -50,7 +50,7 @@ void	ss(t_list *stack_a, t_list *stack_b)
 	int		tmp2;
 	t_list	*stack_tmp;
 
-	if (stack_a->content && stack_a->next)
+	if (stack_a && stack_a->next)
 	{
 		tmp1 = stack_a->content;
 		stack_tmp = stack_a->next;
@@ -58,7 +58,7 @@ void	ss(t_list *stack_a, t_list *stack_b)
 		stack_tmp->content = tmp1;
 		stack_a->content = tmp2;
 	}
-	if (stack_b->content && stack_b->next)
+	if (stack_b && stack_b->next)
 	{
 		tmp1 = stack_b->content;
 		stack_tmp = stack_b->next;

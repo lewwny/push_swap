@@ -6,7 +6,7 @@
 #    By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/06 20:35:06 by lenygarcia        #+#    #+#              #
-#    Updated: 2025/05/04 19:51:30 by lenygarcia       ###   ########.fr        #
+#    Updated: 2025/05/05 17:18:55 by lenygarcia       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC		= cc
 CFLAGS		= -Wall -Wextra -Werror -g -Ilibft/includes -Iincludes
 SRCS		= srcs/push_swap.c srcs/test_error.c srcs/lst_func.c srcs/stack_func1.c \
 		srcs/stack_func2.c srcs/push_swap_index.c srcs/push_swap_index2.c \
-		srcs/chunk_management.c srcs/back_a.c srcs/stack_func3.c
+		srcs/chunk_management.c srcs/back_a.c srcs/stack_func3.c srcs/sort_lil.c
 OBJS		= $(SRCS:.c=.o)
 NAME		= push_swap
 LIBFT_PATH	= ./libft

@@ -6,13 +6,13 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:22:53 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/05/04 20:01:48 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/05/05 16:44:01 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	find_pos_of_index(t_list *stack, int index)
+int	find_pos_of_index(t_list *stack, int index)
 {
 	int	pos;
 
@@ -27,7 +27,7 @@ static int	find_pos_of_index(t_list *stack, int index)
 	return (-1);
 }
 
-static int	find_max_index(t_list *stack_b)
+int	find_max_index(t_list *stack_b)
 {
 	int	max;
 
@@ -55,10 +55,8 @@ void	push_back_to_a(t_list **a, t_list **b)
 		pos = find_pos_of_index(*b, max);
 		size = ft_lstsize(*b);
 		if (pos <= size / 2)
-		{
 			while (pos-- > 0)
 				rb(b, 0);
-		}
 		else
 		{
 			pos = size - pos;
@@ -66,5 +64,7 @@ void	push_back_to_a(t_list **a, t_list **b)
 				rrb(b, 0);
 		}
 		pa(a, b);
+		while (*b && (*b)->content == (*a)->content - 1)
+			pa(a, b);
 	}
 }
