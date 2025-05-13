@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:50:18 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/05/05 17:17:50 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/05/13 08:06:09 by lengarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
-		if (!argv || !argv[0])
-			error_program();
 		a = 1;
+		if (!argv || !argv[0])
+			error_program_free(NULL, argv, a);
 		ajust_argc(&argc, argv);
 	}
 	test_argument(argc, argv, a);
