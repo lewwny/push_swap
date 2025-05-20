@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:50:18 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/05/19 14:13:05 by lengarci         ###   ########.fr       */
+/*   Updated: 2025/05/20 15:00:09 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	is_sorted(t_list *stack)
 {
 	while (stack && stack->next)
 	{
-		if (stack->content > stack->next->content)
+		if (stack->content >= stack->next->content)
 			return (0);
 		stack = stack->next;
 	}
@@ -82,9 +82,9 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
-		a = 1;
 		if (!argv || !argv[0])
-			error_program_free(NULL, argv, a);
+			error_program();
+		a = 1;
 		ajust_argc(&argc, argv);
 	}
 	test_argument(argc, argv, a);

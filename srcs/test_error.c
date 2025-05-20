@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:54:47 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/05/13 08:19:57 by lengarci         ###   ########.fr       */
+/*   Updated: 2025/05/05 10:53:07 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,9 @@ void	error_program(void)
 
 void	error_program_free(t_list **stack_a, char **argv, int a)
 {
-	if (stack_a)
-	{
-		if (*stack_a)
-			ft_lstclear(stack_a);
-	}
-	if (a && argv)
+	if (*stack_a)
+		ft_lstclear(stack_a);
+	if (a)
 		free_split(argv);
 	write(2, "Error\n", 6);
 	exit(1);
@@ -60,7 +57,7 @@ void	test_argument(int argc, char **argv, int a)
 	while (i < argc)
 	{
 		if (!test_argv(argv[i]))
-			error_program_free(NULL, argv, a);
+			error_program();
 		i++;
 	}
 }
@@ -68,17 +65,14 @@ void	test_argument(int argc, char **argv, int a)
 void	test_double(int *tab, t_list **stack_a, char **argv, t_pair *asize)
 {
 	int	i;
-	int	a;
 
-	a = asize->a;
 	i = 0;
 	while (i < asize->size - 1)
 	{
 		if (tab[i] == tab[i + 1])
 		{
 			free(tab);
-			free(asize);
-			error_program_free(stack_a, argv, a);
+			error_program_free(stack_a, argv, asize->a);
 		}
 		i++;
 	}
